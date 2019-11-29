@@ -8,21 +8,44 @@
 
 import Foundation
 
+/// The structure for a performance set (including set liists, etc).
 struct PerformanceSet: Codable {
+    /// The directory for documents to be stored in the FileManager.
     static var documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    /// The specific directory for storing the performance sets.
     static var archiveURL = documentsDirectory.appendingPathComponent("performancesets").appendingPathExtension("plist")
     
+    /// The name of the performance set.
     var name: String?
+    /// The location of the performance.
     var performanceLocation: String?
+    /// The data of the performance.
     var performanceDate: Date?
+    /// The instruments which are used for a performance.
     var instruments: [Instrument]?
+    /// An image representing the performance (JPG).
     var image: Data?
+    /// A list of songs for the performance set.
     var songs: [Song]
     
+    /**
+     Creates a new, empty performance set.
+     */
     init() {
+        self.instruments = []
         self.songs = []
     }
     
+    /**
+     Creates a new performance set.
+     
+     - parameters:
+        - name: Name of the performance set to be created.
+        - performanceLocation: Address of the place to perform.
+        - performanceDate: The date of the planned/past performance.
+        - instruments: The instruments used in the set.
+        - image: An image representing the performance.
+     */
     init(name: String?, at performanceLocation: String?, on performanceDate: Date?, with instruments: [Instrument]?, image: Data?) {
         self.name = name
         self.performanceLocation = performanceLocation
@@ -32,12 +55,20 @@ struct PerformanceSet: Codable {
         self.songs = []
     }
     
+    /**
+     Saves an array of performance sets to file for retrieval later on.
+     
+     - parameter performanceSets: The performance sets to save to file.
+     */
     static func saveToFile(_ performanceSets: [PerformanceSet]) {
         let encoder = PropertyListEncoder()
         let encodedPerformanceSets = try? encoder.encode(performanceSets)
         try? encodedPerformanceSets?.write(to: archiveURL, options: .noFileProtection)
     }
     
+    /**
+     Loads performance sets from file.
+     */
     static func loadFromFile() -> [PerformanceSet]? {
         let decoder = PropertyListDecoder()
         
@@ -48,6 +79,7 @@ struct PerformanceSet: Codable {
     }
 }
 
+/// Types of instruments which are available in the application for selection.
 enum Instrument: String, CaseIterable, Codable {
     case piano = "Piano"
     case guitar = "Guitar"
@@ -56,6 +88,7 @@ enum Instrument: String, CaseIterable, Codable {
     static let all = [piano, guitar, ukelele, other]
 }
 
+/// The metadata for a song.
 struct Song: Codable {
     var name: String
     var artist: String
@@ -63,6 +96,7 @@ struct Song: Codable {
     var key: Key
 }
 
+/// The key for a song.
 enum Key: String, Codable {
     case ab = "Ab"
     case a = "A"

@@ -8,43 +8,52 @@
 
 import UIKit
 
+/**
+ Root view controller for the application, with a global view of all performance sets and options to
+ enter, edit, delete, and add more sets.
+ */
 class PerformanceSetTableViewController: UITableViewController {
 
+    // On load, we bring performance sets into memory and set up the table view.
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Initialize the performance sets from memory
+        // Initialize the performance sets from memory.
         DataController.initializePerformanceSets()
 
-        // Allow editing of the sets
+        // Allow editing of the sets.
         self.navigationItem.rightBarButtonItem = self.editButtonItem
         tableView.allowsSelectionDuringEditing = true
     }
     
+    // Every time the view appears, we want to reload the data. This is because
+    // it might change without a proper unwind (e.g., by pressing back button).
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
     }
 
+    // There is only one section.
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
+    // Set the number of rows to be the number of performance sets.
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return DataController.performanceSets.count
     }
 
-    // Create the cell when it needs to be displayed
+    // Create a cell for a given row and populate it.
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PerformanceSet", for: indexPath) as! PerformanceSetTableViewCell
         
+        // Sets the cell up with the corresponding performance set
         let performanceSet = DataController.performanceSets[indexPath.row]
         cell.setPerformanceSet(performanceSet: performanceSet)
 
         return cell
     }
     
-    
-    // Make sure each row has the same height as its respective image
+    // Make sure each row has the same height as its respective image.
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 78
     }
@@ -58,7 +67,8 @@ class PerformanceSetTableViewController: UITableViewController {
         }
     }
     
-    // Override to support editing each item.
+    // When selecting an item, we either segue to show the performance set or
+    // edit the set's details.
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView.isEditing {
             performSegue(withIdentifier: "EditPerformanceSet", sender: self)
@@ -67,27 +77,11 @@ class PerformanceSetTableViewController: UITableViewController {
         }
     }
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
     // MARK: - Navigation
 
-    // Pass along the item to edit
+    // When showing or editing a set, we pass along the performance set information
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        // If we're editing the set...
         if segue.identifier == "EditPerformanceSet" {
             guard let navigationController = segue.destination as? UINavigationController else {
                 return
@@ -100,7 +94,9 @@ class PerformanceSetTableViewController: UITableViewController {
             }
             let performanceSet = DataController.performanceSets[index]
             addPerformanceSetTableViewController.performanceSet = performanceSet
-        } else if segue.identifier == "ShowPerformanceSet" {
+        }
+        // Otherwise, if we're showing the set...
+        else if segue.identifier == "ShowPerformanceSet" {
             // If we're now showing the song list for the performance...
             guard let index = tableView.indexPathForSelectedRow?.row else { return }
             guard let songListTableViewController = segue.destination as? SongListTableViewController else { return }
@@ -109,7 +105,13 @@ class PerformanceSetTableViewController: UITableViewController {
         }
     }
     
-    
+    /**
+     Unwinds from the 'Add Performance Set' screen and adds the set to the list. It performs a check if the
+     set is new or if it is just editing a previously present set.
+     
+     - Parameter unwindSegue: The segue that is leading us to this point. The source of the segue
+     should be the 'Add Performance Set' screen (for editing or adding sets).
+     */
     @IBAction func unwindAddPerformanceSet(for unwindSegue: UIStoryboardSegue) {
         if unwindSegue.identifier == "AddPerformanceSet" {
             guard let addPerformanceSetTableViewController = unwindSegue.source as? AddPerformanceSetTableViewController, let performanceSet = addPerformanceSetTableViewController.performanceSet else { return }

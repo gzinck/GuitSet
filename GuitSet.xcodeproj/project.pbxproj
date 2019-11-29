@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B71DD5412391A22900D80D7D /* InstrumentSelectorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71DD5402391A22900D80D7D /* InstrumentSelectorDelegate.swift */; };
 		B7857498231D8C71009C4934 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7857497231D8C71009C4934 /* AppDelegate.swift */; };
 		B785749D231D8C71009C4934 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B785749B231D8C71009C4934 /* Main.storyboard */; };
 		B785749F231D8C72009C4934 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B785749E231D8C72009C4934 /* Assets.xcassets */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B71DD5402391A22900D80D7D /* InstrumentSelectorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentSelectorDelegate.swift; sourceTree = "<group>"; };
 		B7857494231D8C71009C4934 /* GuitSet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuitSet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7857497231D8C71009C4934 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B785749C231D8C71009C4934 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				B78574C8231D8EBB009C4934 /* PerformanceSetTableViewCell.swift */,
 				B78574CF231DA093009C4934 /* AddPerformanceSetTableViewController.swift */,
 				B78574D1231EA452009C4934 /* InstrumentTableViewController.swift */,
+				B71DD5402391A22900D80D7D /* InstrumentSelectorDelegate.swift */,
 			);
 			path = PerformanceSetTableView;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 				B7857498231D8C71009C4934 /* AppDelegate.swift in Sources */,
 				B78574D2231EA452009C4934 /* InstrumentTableViewController.swift in Sources */,
 				B78574C6231D8D05009C4934 /* PerformanceSetTableViewController.swift in Sources */,
+				B71DD5412391A22900D80D7D /* InstrumentSelectorDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

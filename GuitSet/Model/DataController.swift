@@ -8,9 +8,16 @@
 
 import Foundation
 
+/**
+ The controller that keeps track of all data in the application. It cannot be instantiated, it is only used for accessing its
+ static variable: performanceSets. This variable keeps all of the performance sets in the application. Whenever it changes,
+ the changes are saved to disk. Upon opening the application, all of the performance sets are loaded from file.
+ */
 class DataController {
+    /// The initialization of a DataController is not allowed.
     private init() {}
     
+    /// The performance sets for the application.
     static var performanceSets: [PerformanceSet] = [] {
         didSet {
             PerformanceSet.saveToFile(performanceSets)
@@ -18,6 +25,7 @@ class DataController {
         }
     }
     
+    /// Initializes the performance sets by loading from file.
     static func initializePerformanceSets() {
         if let performanceSets = PerformanceSet.loadFromFile() {
             self.performanceSets = performanceSets
@@ -26,6 +34,7 @@ class DataController {
         }
     }
     
+    /// Sets up dummy performance sets in the application.
     static func getPlaceholderPerformanceSets() -> [PerformanceSet] {
         return [
             PerformanceSet(name: "My First Set", at: "The Bathroom", on: Date(), with: [.piano], image: nil),

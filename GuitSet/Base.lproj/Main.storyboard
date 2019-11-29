@@ -330,12 +330,8 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="apJ-mI-RgZ"/>
-                    <connections>
-                        <segue destination="sdD-pC-phg" kind="unwind" unwindAction="unwindFromEditingInstrumentsFor:" id="R1f-E1-NzQ"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ALt-S0-hAW" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="sdD-pC-phg" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1917" y="-567"/>
         </scene>
@@ -348,7 +344,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="HYv-5i-WhO">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SongCell" id="HYv-5i-WhO">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HYv-5i-WhO" id="YrA-b2-SNP">
@@ -453,7 +449,7 @@
                     <navigationItem key="navigationItem" title="Performance Set Name" id="e7H-sG-8ZV">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Q1o-Bq-mv0">
                             <connections>
-                                <segue destination="ld5-5j-g8r" kind="presentation" id="qSs-j6-hOt"/>
+                                <segue destination="ld5-5j-g8r" kind="presentation" identifier="AddSong" id="qSs-j6-hOt"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
