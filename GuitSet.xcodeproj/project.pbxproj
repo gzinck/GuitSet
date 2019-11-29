@@ -8,12 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		B7857498231D8C71009C4934 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7857497231D8C71009C4934 /* AppDelegate.swift */; };
-		B785749A231D8C71009C4934 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7857499231D8C71009C4934 /* ViewController.swift */; };
 		B785749D231D8C71009C4934 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B785749B231D8C71009C4934 /* Main.storyboard */; };
 		B785749F231D8C72009C4934 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B785749E231D8C72009C4934 /* Assets.xcassets */; };
 		B78574A2231D8C72009C4934 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B78574A0231D8C72009C4934 /* LaunchScreen.storyboard */; };
 		B78574AD231D8C72009C4934 /* GuitSetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78574AC231D8C72009C4934 /* GuitSetTests.swift */; };
 		B78574B8231D8C72009C4934 /* GuitSetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78574B7231D8C72009C4934 /* GuitSetUITests.swift */; };
+		B78574C6231D8D05009C4934 /* PerformanceSetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78574C5231D8D05009C4934 /* PerformanceSetTableViewController.swift */; };
+		B78574C9231D8EBB009C4934 /* PerformanceSetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78574C8231D8EBB009C4934 /* PerformanceSetTableViewCell.swift */; };
+		B78574CC231D8FC9009C4934 /* PerformanceSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78574CB231D8FC9009C4934 /* PerformanceSet.swift */; };
+		B78574CE231D965C009C4934 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78574CD231D965C009C4934 /* DataController.swift */; };
+		B78574D0231DA093009C4934 /* AddPerformanceSetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78574CF231DA093009C4934 /* AddPerformanceSetTableViewController.swift */; };
+		B78574D2231EA452009C4934 /* InstrumentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78574D1231EA452009C4934 /* InstrumentTableViewController.swift */; };
+		B79929AE233D7B450026574A /* SongListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79929AD233D7B450026574A /* SongListTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +42,6 @@
 /* Begin PBXFileReference section */
 		B7857494231D8C71009C4934 /* GuitSet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuitSet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7857497231D8C71009C4934 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B7857499231D8C71009C4934 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B785749C231D8C71009C4934 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B785749E231D8C72009C4934 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B78574A1231D8C72009C4934 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +52,13 @@
 		B78574B3231D8C72009C4934 /* GuitSetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GuitSetUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B78574B7231D8C72009C4934 /* GuitSetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuitSetUITests.swift; sourceTree = "<group>"; };
 		B78574B9231D8C72009C4934 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B78574C5231D8D05009C4934 /* PerformanceSetTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceSetTableViewController.swift; sourceTree = "<group>"; };
+		B78574C8231D8EBB009C4934 /* PerformanceSetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceSetTableViewCell.swift; sourceTree = "<group>"; };
+		B78574CB231D8FC9009C4934 /* PerformanceSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceSet.swift; sourceTree = "<group>"; };
+		B78574CD231D965C009C4934 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		B78574CF231DA093009C4934 /* AddPerformanceSetTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPerformanceSetTableViewController.swift; sourceTree = "<group>"; };
+		B78574D1231EA452009C4934 /* InstrumentTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentTableViewController.swift; sourceTree = "<group>"; };
+		B79929AD233D7B450026574A /* SongListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongListTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,8 +109,10 @@
 		B7857496231D8C71009C4934 /* GuitSet */ = {
 			isa = PBXGroup;
 			children = (
+				B79929AC233D7B1D0026574A /* SongListTableView */,
+				B78574CA231D8F9C009C4934 /* Model */,
+				B78574C7231D8E97009C4934 /* PerformanceSetTableView */,
 				B7857497231D8C71009C4934 /* AppDelegate.swift */,
-				B7857499231D8C71009C4934 /* ViewController.swift */,
 				B785749B231D8C71009C4934 /* Main.storyboard */,
 				B785749E231D8C72009C4934 /* Assets.xcassets */,
 				B78574A0231D8C72009C4934 /* LaunchScreen.storyboard */,
@@ -123,6 +137,34 @@
 				B78574B9231D8C72009C4934 /* Info.plist */,
 			);
 			path = GuitSetUITests;
+			sourceTree = "<group>";
+		};
+		B78574C7231D8E97009C4934 /* PerformanceSetTableView */ = {
+			isa = PBXGroup;
+			children = (
+				B78574C5231D8D05009C4934 /* PerformanceSetTableViewController.swift */,
+				B78574C8231D8EBB009C4934 /* PerformanceSetTableViewCell.swift */,
+				B78574CF231DA093009C4934 /* AddPerformanceSetTableViewController.swift */,
+				B78574D1231EA452009C4934 /* InstrumentTableViewController.swift */,
+			);
+			path = PerformanceSetTableView;
+			sourceTree = "<group>";
+		};
+		B78574CA231D8F9C009C4934 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B78574CB231D8FC9009C4934 /* PerformanceSet.swift */,
+				B78574CD231D965C009C4934 /* DataController.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B79929AC233D7B1D0026574A /* SongListTableView */ = {
+			isa = PBXGroup;
+			children = (
+				B79929AD233D7B450026574A /* SongListTableViewController.swift */,
+			);
+			path = SongListTableView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,8 +298,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B785749A231D8C71009C4934 /* ViewController.swift in Sources */,
+				B78574C9231D8EBB009C4934 /* PerformanceSetTableViewCell.swift in Sources */,
+				B78574CE231D965C009C4934 /* DataController.swift in Sources */,
+				B79929AE233D7B450026574A /* SongListTableViewController.swift in Sources */,
+				B78574CC231D8FC9009C4934 /* PerformanceSet.swift in Sources */,
+				B78574D0231DA093009C4934 /* AddPerformanceSetTableViewController.swift in Sources */,
 				B7857498231D8C71009C4934 /* AppDelegate.swift in Sources */,
+				B78574D2231EA452009C4934 /* InstrumentTableViewController.swift in Sources */,
+				B78574C6231D8D05009C4934 /* PerformanceSetTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
