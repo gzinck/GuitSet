@@ -92,7 +92,7 @@ class AddPerformanceSetTableViewController: UITableViewController, UINavigationC
         case imageButtonIndexPath:
             return 200.0
         default:
-            return 44.0
+            return 54.0
         }
     }
     

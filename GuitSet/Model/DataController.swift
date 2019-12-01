@@ -27,6 +27,7 @@ class DataController {
     
     /// Initializes the performance sets by loading from file.
     static func initializePerformanceSets() {
+        guard performanceSets.count == 0 else { return }
         if let performanceSets = PerformanceSet.loadFromFile() {
             self.performanceSets = performanceSets
         } else {

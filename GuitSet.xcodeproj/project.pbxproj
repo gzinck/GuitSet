@@ -21,6 +21,10 @@
 		B78574D0231DA093009C4934 /* AddPerformanceSetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78574CF231DA093009C4934 /* AddPerformanceSetTableViewController.swift */; };
 		B78574D2231EA452009C4934 /* InstrumentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78574D1231EA452009C4934 /* InstrumentTableViewController.swift */; };
 		B79929AE233D7B450026574A /* SongListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79929AD233D7B450026574A /* SongListTableViewController.swift */; };
+		B7D74A2723943D43008DCF02 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D74A2623943D43008DCF02 /* TextField.swift */; };
+		B7D74A35239446C2008DCF02 /* CreateSongTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D74A34239446C2008DCF02 /* CreateSongTableViewController.swift */; };
+		B7D74A3923946653008DCF02 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D74A3823946653008DCF02 /* UIViewController.swift */; };
+		B7D74A3B23947780008DCF02 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D74A3A23947780008DCF02 /* TextView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +65,10 @@
 		B78574CF231DA093009C4934 /* AddPerformanceSetTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPerformanceSetTableViewController.swift; sourceTree = "<group>"; };
 		B78574D1231EA452009C4934 /* InstrumentTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentTableViewController.swift; sourceTree = "<group>"; };
 		B79929AD233D7B450026574A /* SongListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongListTableViewController.swift; sourceTree = "<group>"; };
+		B7D74A2623943D43008DCF02 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		B7D74A34239446C2008DCF02 /* CreateSongTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSongTableViewController.swift; sourceTree = "<group>"; };
+		B7D74A3823946653008DCF02 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		B7D74A3A23947780008DCF02 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,9 +119,10 @@
 		B7857496231D8C71009C4934 /* GuitSet */ = {
 			isa = PBXGroup;
 			children = (
-				B79929AC233D7B1D0026574A /* SongListTableView */,
+				B7D74A29239441FF008DCF02 /* CreateSong */,
+				B7D74A28239441E0008DCF02 /* PerformanceSets */,
+				B7D74A2523943D15008DCF02 /* Components */,
 				B78574CA231D8F9C009C4934 /* Model */,
-				B78574C7231D8E97009C4934 /* PerformanceSetTableView */,
 				B7857497231D8C71009C4934 /* AppDelegate.swift */,
 				B785749B231D8C71009C4934 /* Main.storyboard */,
 				B785749E231D8C72009C4934 /* Assets.xcassets */,
@@ -168,6 +177,33 @@
 				B79929AD233D7B450026574A /* SongListTableViewController.swift */,
 			);
 			path = SongListTableView;
+			sourceTree = "<group>";
+		};
+		B7D74A2523943D15008DCF02 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				B7D74A2623943D43008DCF02 /* TextField.swift */,
+				B7D74A3823946653008DCF02 /* UIViewController.swift */,
+				B7D74A3A23947780008DCF02 /* TextView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		B7D74A28239441E0008DCF02 /* PerformanceSets */ = {
+			isa = PBXGroup;
+			children = (
+				B79929AC233D7B1D0026574A /* SongListTableView */,
+				B78574C7231D8E97009C4934 /* PerformanceSetTableView */,
+			);
+			path = PerformanceSets;
+			sourceTree = "<group>";
+		};
+		B7D74A29239441FF008DCF02 /* CreateSong */ = {
+			isa = PBXGroup;
+			children = (
+				B7D74A34239446C2008DCF02 /* CreateSongTableViewController.swift */,
+			);
+			path = CreateSong;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -303,7 +339,11 @@
 			files = (
 				B78574C9231D8EBB009C4934 /* PerformanceSetTableViewCell.swift in Sources */,
 				B78574CE231D965C009C4934 /* DataController.swift in Sources */,
+				B7D74A3923946653008DCF02 /* UIViewController.swift in Sources */,
+				B7D74A3B23947780008DCF02 /* TextView.swift in Sources */,
 				B79929AE233D7B450026574A /* SongListTableViewController.swift in Sources */,
+				B7D74A2723943D43008DCF02 /* TextField.swift in Sources */,
+				B7D74A35239446C2008DCF02 /* CreateSongTableViewController.swift in Sources */,
 				B78574CC231D8FC9009C4934 /* PerformanceSet.swift in Sources */,
 				B78574D0231DA093009C4934 /* AddPerformanceSetTableViewController.swift in Sources */,
 				B7857498231D8C71009C4934 /* AppDelegate.swift in Sources */,
@@ -487,6 +527,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U53XE8468V;
 				INFOPLIST_FILE = GuitSet/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -505,6 +546,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U53XE8468V;
 				INFOPLIST_FILE = GuitSet/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
