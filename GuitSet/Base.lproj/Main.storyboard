@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dDm-PY-kXn">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -477,7 +476,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="2e4-db-RSd">
             <objects>
-                <tabBarController id="dDm-PY-kXn" sceneMemberID="viewController">
+                <tabBarController id="dDm-PY-kXn" customClass="TabBarController" customModule="GuitSet" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8MI-2E-fex">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -486,19 +485,22 @@
                     <connections>
                         <segue destination="HZn-mu-kYm" kind="relationship" relationship="viewControllers" id="poM-1h-kM9"/>
                         <segue destination="o28-YW-h3w" kind="relationship" relationship="viewControllers" id="XE6-4u-7SQ"/>
+                        <segue destination="o28-YW-h3w" kind="presentation" identifier="ShowCreateSong" id="OY6-QY-Rcm"/>
+                        <segue destination="sf9-c5-mvp" kind="relationship" relationship="viewControllers" id="BSj-jn-9zL"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R99-ao-1gA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1820" y="1991"/>
+            <point key="canvasLocation" x="-1820" y="997"/>
         </scene>
         <!--Create-->
         <scene sceneID="Bm1-K1-5xP">
             <objects>
-                <navigationController id="o28-YW-h3w" sceneMemberID="viewController">
+                <navigationController id="o28-YW-h3w" customClass="InterceptableNavigationController" customModule="GuitSet" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Create" image="plus.square.fill" catalog="system" selectedImage="plus.square.fill" id="K0c-ol-gWP"/>
+                    <navigationItem key="navigationItem" id="Bqr-VB-nf6"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="vnZ-Wv-2gP">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="108"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -507,14 +509,14 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vfK-zh-Zya" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-797" y="1991"/>
+            <point key="canvasLocation" x="-797" y="997"/>
         </scene>
         <!--Create Song-->
         <scene sceneID="Svz-gl-jZa">
             <objects>
                 <tableViewController id="0Fa-bo-vSH" customClass="CreateSongTableViewController" customModule="GuitSet" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="bIb-ab-p71">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <sections>
@@ -652,7 +654,53 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UfW-Iu-ICt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="121.73913043478262" y="1990.8482142857142"/>
+            <point key="canvasLocation" x="122" y="997"/>
+        </scene>
+        <!--Root View Controller-->
+        <scene sceneID="tTQ-Zz-adL">
+            <objects>
+                <tableViewController id="DGI-45-MZw" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="t9T-pn-0HX">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="nM5-Uz-1Ap">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nM5-Uz-1Ap" id="NY9-WZ-vOk">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="DGI-45-MZw" id="UeK-jH-Awr"/>
+                            <outlet property="delegate" destination="DGI-45-MZw" id="smP-Ix-Hqg"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="Ymv-4X-LW4"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G4Q-4e-eYK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="123" y="1896"/>
+        </scene>
+        <!--Songs-->
+        <scene sceneID="LGU-TK-vwm">
+            <objects>
+                <navigationController id="sf9-c5-mvp" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Songs" image="archivebox.fill" catalog="system" id="Xyh-wR-Ugp"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Rjk-5V-2Ab">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="DGI-45-MZw" kind="relationship" relationship="rootViewController" id="iXN-T0-VF6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VwA-zF-xpb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-797" y="1896"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="JsU-0M-FGE">
@@ -673,9 +721,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="archivebox.fill" catalog="system" width="64" height="52"/>
         <image name="plus.square.fill" catalog="system" width="64" height="56"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="OY6-QY-Rcm"/>
         <segue reference="Mof-Rj-0K3"/>
     </inferredMetricsTieBreakers>
 </document>

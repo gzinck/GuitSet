@@ -18,7 +18,7 @@ class SongListTableViewController: UITableViewController {
     var setIndex: Int? {
         didSet {
             guard let index = setIndex else { return }
-            self.title = DataController.performanceSets[index].name
+            self.title = PerformanceSetController.performanceSets[index].name
         }
     }
 
@@ -41,7 +41,7 @@ class SongListTableViewController: UITableViewController {
             return 3
         case 1:
             guard let setIndex = setIndex else { return 0 }
-            return DataController.performanceSets[setIndex].songs.count
+            return PerformanceSetController.performanceSets[setIndex].songIDs.count
         default:
             return 0
         }
@@ -61,11 +61,11 @@ class SongListTableViewController: UITableViewController {
             case 0:
                 // Location cell
                 cell.detailTextLabel?.text = "Location"
-                cell.textLabel?.text = DataController.performanceSets[setIndex].performanceLocation
+                cell.textLabel?.text = PerformanceSetController.performanceSets[setIndex].performanceLocation
             case 1:
                 // Date cell
                 cell.detailTextLabel?.text = "Date"
-                if let performanceSetDate = DataController.performanceSets[setIndex].performanceDate {
+                if let performanceSetDate = PerformanceSetController.performanceSets[setIndex].performanceDate {
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateStyle = .medium
                     cell.textLabel?.text = dateFormatter.string(from: performanceSetDate)
@@ -75,7 +75,7 @@ class SongListTableViewController: UITableViewController {
             case 2:
                 // Instrument cell
                 var instruments = ""
-                for instrument in DataController.performanceSets[setIndex].instruments ?? [] {
+                for instrument in PerformanceSetController.performanceSets[setIndex].instruments ?? [] {
                     instruments += ", " + instrument.rawValue
                 }
                 if instruments.count > 2 {
@@ -121,7 +121,7 @@ class SongListTableViewController: UITableViewController {
             guard let navigationController = segue.destination as? UINavigationController else { return }
             guard let addPerformanceSetTableViewController = navigationController.viewControllers.first as? AddPerformanceSetTableViewController else { return }
             guard let index = setIndex else { return }
-            let performanceSet = DataController.performanceSets[index]
+            let performanceSet = PerformanceSetController.performanceSets[index]
             addPerformanceSetTableViewController.performanceSet = performanceSet
         }
         // Deselect what was selected, if anything
@@ -139,11 +139,11 @@ class SongListTableViewController: UITableViewController {
                 let setIndex = setIndex
                 else { return }
             
-            DataController.performanceSets[setIndex] = performanceSet
+            PerformanceSetController.performanceSets[setIndex] = performanceSet
             
             // Reload data
             tableView.reloadData()
-            self.title = DataController.performanceSets[setIndex].name
+            self.title = PerformanceSetController.performanceSets[setIndex].name
         }
     }
 

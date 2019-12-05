@@ -9,7 +9,7 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegate {
 
     var window: UIWindow?
 
@@ -41,6 +41,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    /// Changes behaviour of the tab bar controller so that it shows the Create Song options modally (rather than as a tab)
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        if(viewController is InterceptableNavigationController) {
+            tabBarController.performSegue(withIdentifier: "ShowCreateSong", sender: tabBarController)
+            return false
+        }
+        return true
+    }
 
 }
 

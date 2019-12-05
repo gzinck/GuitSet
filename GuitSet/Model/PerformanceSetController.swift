@@ -1,5 +1,5 @@
 //
-//  DataController.swift
+//  PerformanceSetController.swift
 //  GuitSet
 //
 //  Created by Graeme Zinck on 2019-09-02.
@@ -13,15 +13,14 @@ import Foundation
  static variable: performanceSets. This variable keeps all of the performance sets in the application. Whenever it changes,
  the changes are saved to disk. Upon opening the application, all of the performance sets are loaded from file.
  */
-class DataController {
-    /// The initialization of a DataController is not allowed.
+class PerformanceSetController {
+    /// The initialization of a PerformanceSetController is not allowed.
     private init() {}
     
     /// The performance sets for the application.
     static var performanceSets: [PerformanceSet] = [] {
         didSet {
             PerformanceSet.saveToFile(performanceSets)
-            print("performanceSets edited")
         }
     }
     

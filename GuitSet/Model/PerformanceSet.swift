@@ -25,15 +25,15 @@ struct PerformanceSet: Codable {
     var instruments: [Instrument]?
     /// An image representing the performance (JPG).
     var image: Data?
-    /// A list of songs for the performance set.
-    var songs: [Song]
+    /// A list of song IDs for the performance set.
+    var songIDs: [Int]
     
     /**
      Creates a new, empty performance set.
      */
     init() {
         self.instruments = []
-        self.songs = []
+        self.songIDs = []
     }
     
     /**
@@ -52,7 +52,7 @@ struct PerformanceSet: Codable {
         self.performanceDate = performanceDate
         self.instruments = instruments
         self.image = image
-        self.songs = []
+        self.songIDs = []
     }
     
     /**
@@ -86,28 +86,4 @@ enum Instrument: String, CaseIterable, Codable {
     case ukelele = "Ukelele"
     case other = "Other"
     static let all = [piano, guitar, ukelele, other]
-}
-
-/// The metadata for a song.
-struct Song: Codable {
-    var name: String
-    var artist: String
-    var capo: Int
-    var key: Key
-}
-
-/// The key for a song.
-enum Key: String, Codable {
-    case ab = "Ab"
-    case a = "A"
-    case bb = "Bb"
-    case b = "B"
-    case c = "C"
-    case db = "Db"
-    case d = "D"
-    case eb = "Eb"
-    case e = "E"
-    case f = "F"
-    case gb = "Gb"
-    case g = "G"
 }

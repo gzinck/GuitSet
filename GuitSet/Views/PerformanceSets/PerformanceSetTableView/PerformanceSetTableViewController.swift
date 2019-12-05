@@ -19,7 +19,7 @@ class PerformanceSetTableViewController: UITableViewController {
         super.viewDidLoad()
         
         // Initialize the performance sets from memory.
-        DataController.initializePerformanceSets()
+        PerformanceSetController.initializePerformanceSets()
 
         // Allow editing of the sets.
         self.navigationItem.rightBarButtonItem = self.editButtonItem
@@ -39,7 +39,7 @@ class PerformanceSetTableViewController: UITableViewController {
 
     // Set the number of rows to be the number of performance sets.
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return DataController.performanceSets.count
+        return PerformanceSetController.performanceSets.count
     }
 
     // Create a cell for a given row and populate it.
@@ -47,7 +47,7 @@ class PerformanceSetTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PerformanceSet", for: indexPath) as! PerformanceSetTableViewCell
         
         // Sets the cell up with the corresponding performance set
-        let performanceSet = DataController.performanceSets[indexPath.row]
+        let performanceSet = PerformanceSetController.performanceSets[indexPath.row]
         cell.setPerformanceSet(performanceSet: performanceSet)
 
         return cell
@@ -62,7 +62,7 @@ class PerformanceSetTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            DataController.performanceSets.remove(at: indexPath.row)
+            PerformanceSetController.performanceSets.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
@@ -92,7 +92,7 @@ class PerformanceSetTableViewController: UITableViewController {
             guard let index = tableView.indexPathForSelectedRow?.row else {
                 return
             }
-            let performanceSet = DataController.performanceSets[index]
+            let performanceSet = PerformanceSetController.performanceSets[index]
             addPerformanceSetTableViewController.performanceSet = performanceSet
         }
         // Otherwise, if we're showing the set...
@@ -118,10 +118,10 @@ class PerformanceSetTableViewController: UITableViewController {
             
             // First, check if it's an add or an edit
             if let indexPath = tableView.indexPathForSelectedRow {
-                DataController.performanceSets[indexPath.row] = performanceSet
+                PerformanceSetController.performanceSets[indexPath.row] = performanceSet
                 tableView.deselectRow(at: indexPath, animated: true)
             } else {
-                DataController.performanceSets.append(performanceSet)
+                PerformanceSetController.performanceSets.append(performanceSet)
             }
         }
         tableView.reloadData()
