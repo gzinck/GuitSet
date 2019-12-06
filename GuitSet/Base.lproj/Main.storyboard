@@ -357,15 +357,23 @@
                             <outlet property="delegate" destination="504-ns-iY6" id="0Sc-gK-eqA"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Songs" id="mp1-Z8-6AG"/>
+                    <navigationItem key="navigationItem" title="Songs" id="mp1-Z8-6AG">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="V4m-3N-fKx">
+                            <connections>
+                                <segue destination="Aad-nm-02R" kind="unwind" identifier="SelectSongs" unwindAction="unwindEditSongListFor:" id="T7i-zp-mcO"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pnx-K5-zSM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="Aad-nm-02R" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2839" y="131"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="5O5-He-Mst">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9og-sR-cAD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController id="ld5-5j-g8r" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="YZl-9k-4RV">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
@@ -375,7 +383,6 @@
                         <segue destination="504-ns-iY6" kind="relationship" relationship="rootViewController" id="Zlo-4X-b7I"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9og-sR-cAD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1916" y="131"/>
         </scene>
@@ -432,7 +439,7 @@
                     <navigationItem key="navigationItem" title="Performance Set Name" id="e7H-sG-8ZV">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Q1o-Bq-mv0">
                             <connections>
-                                <segue destination="ld5-5j-g8r" kind="presentation" identifier="AddSong" id="qSs-j6-hOt"/>
+                                <segue destination="ld5-5j-g8r" kind="presentation" identifier="SelectSongs" id="qSs-j6-hOt"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

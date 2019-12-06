@@ -131,6 +131,11 @@ class SongListTableViewController: UITableViewController {
             guard let addPerformanceSetTableViewController = navigationController.viewControllers.first as? AddPerformanceSetTableViewController else { return }
             guard let performanceSet = performanceSet else { return }
             addPerformanceSetTableViewController.performanceSet = performanceSet.copy() as? PerformanceSet
+        } else if segue.identifier == "SelectSongs" {
+            guard let navigationController = segue.destination as? UINavigationController else { return }
+            guard let selectSongsController = navigationController.viewControllers.first as? AllSongsSelectorTableViewController else { return }
+            guard let performanceSet = performanceSet else { return }
+            selectSongsController.selectedIDs = Set(performanceSet.songIDs)
         }
         // Deselect what was selected, if anything
         if let indexPath = tableView.indexPathForSelectedRow {
@@ -153,6 +158,31 @@ class SongListTableViewController: UITableViewController {
             tableView.reloadData()
             self.title = newSet.name
         }
+    }
+    
+    
+    @IBAction func unwindEditSongList(for unwindSegue: UIStoryboardSegue) {
+        if unwindSegue.identifier == "SelectSongs" {
+            guard let allSongsSelector = unwindSegue.source as? AllSongsSelectorTableViewController, let performanceSet = performanceSet else { return }
+            
+            var selected = allSongsSelector.selectedIDs
+            var newSongIDs: [Int] = []
+            
+            // Go through the songs in the array, add the ones that are already there and selected
+            for songID in performanceSet.songIDs {
+                if(selected.contains(songID)) {
+                    newSongIDs.append(songID)
+                    selected.remove(songID)
+                }
+            }
+            // Append any newly added songs
+            for songID in selected {
+                newSongIDs.append(songID)
+            }
+            
+            performanceSet.songIDs = newSongIDs
+        }
+        tableView.reloadData()
     }
 
 }

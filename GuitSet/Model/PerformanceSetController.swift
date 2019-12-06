@@ -20,13 +20,17 @@ class PerformanceSetController {
     /// The performance sets for the application.
     private static var performanceSets: [PerformanceSet] = [] {
         didSet {
-            PerformanceSet.saveToFile(performanceSets)
+            updatePerformanceSets()
         }
     }
     
     /// The number of performance sets
     static var numPerformanceSets: Int {
         return performanceSets.count
+    }
+    
+    static func updatePerformanceSets() {
+        PerformanceSet.saveToFile(performanceSets)
     }
     
     /**

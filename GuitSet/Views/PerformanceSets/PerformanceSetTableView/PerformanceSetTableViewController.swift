@@ -122,5 +122,4 @@ class PerformanceSetTableViewController: UITableViewController {
         }
         tableView.reloadData()
     }
-
 }

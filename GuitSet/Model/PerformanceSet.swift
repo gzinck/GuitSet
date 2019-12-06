@@ -22,11 +22,19 @@ class PerformanceSet: Codable, NSCopying {
     /// The data of the performance.
     var performanceDate: Date?
     /// The instruments which are used for a performance.
-    var instruments: [Instrument]?
+    var instruments: [Instrument]? {
+        didSet {
+            PerformanceSetController.updatePerformanceSets()
+        }
+    }
     /// An image representing the performance (JPG).
     var image: Data?
     /// A list of song IDs for the performance set.
-    var songIDs: [Int]
+    var songIDs: [Int] {
+        didSet {
+            PerformanceSetController.updatePerformanceSets()
+        }
+    }
     
     /**
      Creates a new, empty performance set.
