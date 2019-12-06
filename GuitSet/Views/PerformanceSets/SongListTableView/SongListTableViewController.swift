@@ -18,8 +18,15 @@ class SongListTableViewController: UITableViewController {
     var setIndex: Int? {
         didSet {
             guard let index = setIndex else { return }
-            self.title = PerformanceSetController.performanceSets[index].name
+            self.title = PerformanceSetController.getPerformanceSet(index: index)?.name
         }
+    }
+    
+    /// The songs in the performance set
+    var songs: [Song] {
+        guard let index = setIndex,
+            let set = PerformanceSetController.getPerformanceSet(index: index) else { return [] }
+        return SongController.getSongs(set.songIDs)
     }
 
     override func viewDidLoad() {
@@ -40,8 +47,7 @@ class SongListTableViewController: UITableViewController {
         case 0:
             return 3
         case 1:
-            guard let setIndex = setIndex else { return 0 }
-            return PerformanceSetController.performanceSets[setIndex].songIDs.count
+            return songs.count
         default:
             return 0
         }
@@ -87,10 +93,14 @@ class SongListTableViewController: UITableViewController {
                 cell.textLabel?.text = ""
             }
             return cell
+        } else {
+            // For displaying a song in the list
+            let genericCell = tableView.dequeueReusableCell(withIdentifier: "SongCell", for: indexPath)
+            guard let cell = genericCell as? SongTableViewCell else { return genericCell }
+            guard indexPath.row < songs.count else { return genericCell }
+            cell.setSong(songs[indexPath.row])
+            return cell
         }
-        // Configure the set song list
-        // TODO: Add implementation for the songs to be displayed!
-        return tableView.dequeueReusableCell(withIdentifier: "PerformanceInfo", for: indexPath)
     }
     
     // The headers for each section show what data is contained

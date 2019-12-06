@@ -8,15 +8,16 @@
 
 import Foundation
 
-/// The metadata for a song.
+/// The metadata for a song. Note that songs should *never* be instantiated directly;
+/// they should only be instantiated by the SongController.
 struct Song: Codable {
     /// The directory for document storage.
     static var documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     /// The specific directory for storing the songs.
     static var archiveURL = documentsDirectory.appendingPathComponent("songdictionary").appendingPathExtension("plist")
     
-    /// The name of the song.
-    var name: String
+    /// The title of the song.
+    var title: String
     /// The artist of the song.
     var artist: String
     /// The capo for the song.
@@ -25,31 +26,41 @@ struct Song: Codable {
     var chords: String
     /// Whether the song is a draft or not
     var draft: Bool
+    /// The ID for the song
+    var id: Int
     
-    /// Creates a new, empty song
-    init() {
-        self.name = ""
+    /**
+     Creates a new, empty song. This should only ever be called by the SongController, which assigns
+     unique IDs to every song.
+     
+     - parameter id: The ID of the song created.
+     */
+    init(id: Int) {
+        self.title = ""
         self.artist = ""
         self.capo = 0
         self.chords = ""
         self.draft = true
+        self.id = id
     }
     
     /**
      Creates a new Song from the provided data.
      
      - parameters:
-        - name: The name of the song.
+        - title: The title of the song.
         - artist: The name of the artist of the song.
         - capo: The number of frets for the capo.
         - chords: The chords and lyrics for the song.
+        - id: The unique ID of the song.
      */
-    init(_ name: String, by artist: String, capo: Int, chords: String) {
-        self.name = name
+    init(_ title: String, by artist: String, capo: Int, chords: String, id: Int) {
+        self.title = title
         self.artist = artist
         self.capo = capo
         self.chords = chords
         self.draft = false
+        self.id = id
     }
     
     /**

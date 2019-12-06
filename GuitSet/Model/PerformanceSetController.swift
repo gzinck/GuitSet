@@ -24,6 +24,19 @@ class PerformanceSetController {
         }
     }
     
+    /**
+     Gets a performance set, given its index.
+     
+     - parameter index: The index of the performance set to get.
+     - returns: The corresponding performance set, or nil if it does not exist.
+     */
+    static func getPerformanceSet(index: Int) -> PerformanceSet? {
+        if(index < performanceSets.count) {
+            return performanceSets[index]
+        }
+        return nil
+    }
+    
     /// Initializes the performance sets by loading from file.
     static func initializePerformanceSets() {
         guard performanceSets.count == 0 else { return }
@@ -36,10 +49,12 @@ class PerformanceSetController {
     
     /// Sets up dummy performance sets in the application.
     static func getPlaceholderPerformanceSets() -> [PerformanceSet] {
-        return [
+        var sets = [
             PerformanceSet(name: "My First Set", at: "The Bathroom", on: Date(), with: [.piano], image: nil),
             PerformanceSet(name: "My Second Set", at: "The Laundry Room", on: Date(), with: [.piano], image: nil),
             PerformanceSet(name: "My Third Set", at: "Mars", on: Date(), with: [.piano], image: nil)
         ]
+        sets[0].songIDs = [1]
+        return sets
     }
 }

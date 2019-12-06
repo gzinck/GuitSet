@@ -18,9 +18,6 @@ class PerformanceSetTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Initialize the performance sets from memory.
-        PerformanceSetController.initializePerformanceSets()
-
         // Allow editing of the sets.
         self.navigationItem.rightBarButtonItem = self.editButtonItem
         tableView.allowsSelectionDuringEditing = true

@@ -32,6 +32,12 @@ class SongController {
         }
     }
     
+    static var numSongs: Int {
+        get {
+            return songDict.count
+        }
+    }
+    
     /**
      Initializes the song dictionary in memory by loading from file, if applicable, or just getting placeholders.
      This function should be called before using the song dictionary.
@@ -51,13 +57,15 @@ class SongController {
     }
     
     /**
-     Adds a song to the song dictionary.
+     Creates a song and adds it  to the song dictionary.
      
-     - parameter song: The song to add to the dictionary.
+     - returns: The song which was just added
      */
-    static func addSong(_ song: Song) {
+    static func createSong() -> Song {
         highestID += 1
+        let song = Song(id: highestID)
         songDict[highestID] = song
+        return song
     }
     
     /**
@@ -67,6 +75,22 @@ class SongController {
      */
     static func getSong(_ id: Int) -> Song? {
         return songDict[id]
+    }
+    
+    /**
+     Gets all songs with the IDs listed as input. If a song is not in the dictionary,
+     then it is not included.
+     
+     - parameter ids: The IDs of songs to get.
+     */
+    static func getSongs(_ ids: [Int]) -> [Song] {
+        var songs: [Song] = []
+        for id in ids {
+            if let song = songDict[id] {
+                songs.append(song)
+            }
+        }
+        return songs
     }
     
     /**
@@ -89,8 +113,8 @@ class SongController {
      */
     static func getPlaceholderSongs() -> [Int:Song] {
         return [
-            1: Song("My Bonnie Lies Over the Ocean", by: "Somebody", capo: 0, chords: "These are the chords"),
-            2: Song("Bill Nye the Science Guy", by: "Bill Nye", capo: 0, chords: "N/A")
+            1: Song("My Bonnie Lies Over the Ocean", by: "Somebody", capo: 0, chords: "These are the chords", id: 1),
+            2: Song("Bill Nye the Science Guy", by: "Bill Nye", capo: 0, chords: "N/A", id: 2)
         ]
     }
 }

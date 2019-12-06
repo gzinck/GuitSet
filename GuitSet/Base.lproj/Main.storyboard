@@ -415,28 +415,12 @@
                                     <segue destination="33g-Ih-0gM" kind="presentation" identifier="EditPerformanceSet" id="vmL-xE-OXk"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PerformanceSong" textLabel="SiV-bB-W36" detailTextLabel="CGW-NW-dfd" style="IBUITableViewCellStyleSubtitle" id="sVS-6b-o1t">
-                                <rect key="frame" x="0.0" y="71.5" width="414" height="55.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SongCell" id="sVS-6b-o1t" customClass="SongTableViewCell" customModule="GuitSet" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="71.5" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sVS-6b-o1t" id="RK7-Pf-nhN">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="55.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SiV-bB-W36">
-                                            <rect key="frame" x="20" y="10" width="33.5" height="20.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CGW-NW-dfd">
-                                            <rect key="frame" x="20" y="31.5" width="33" height="14.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -656,16 +640,16 @@
             </objects>
             <point key="canvasLocation" x="122" y="997"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Songs-->
         <scene sceneID="tTQ-Zz-adL">
             <objects>
-                <tableViewController id="DGI-45-MZw" sceneMemberID="viewController">
+                <tableViewController id="DGI-45-MZw" customClass="AllSongsListTableViewController" customModule="GuitSet" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="t9T-pn-0HX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="nM5-Uz-1Ap">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SongCell" id="nM5-Uz-1Ap" customClass="SongTableViewCell" customModule="GuitSet" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nM5-Uz-1Ap" id="NY9-WZ-vOk">
@@ -679,7 +663,7 @@
                             <outlet property="delegate" destination="DGI-45-MZw" id="smP-Ix-Hqg"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="Ymv-4X-LW4"/>
+                    <navigationItem key="navigationItem" title="Songs" largeTitleDisplayMode="always" id="Ymv-4X-LW4"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G4Q-4e-eYK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -690,8 +674,8 @@
             <objects>
                 <navigationController id="sf9-c5-mvp" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Songs" image="archivebox.fill" catalog="system" id="Xyh-wR-Ugp"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Rjk-5V-2Ab">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="Rjk-5V-2Ab">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -726,6 +710,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="OY6-QY-Rcm"/>
-        <segue reference="Mof-Rj-0K3"/>
+        <segue reference="vmL-xE-OXk"/>
     </inferredMetricsTieBreakers>
 </document>

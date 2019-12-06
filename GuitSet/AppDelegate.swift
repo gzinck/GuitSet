@@ -15,7 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        // Initialize the performance sets from file.
+        PerformanceSetController.initializePerformanceSets()
+        // Initialize the songs from file.
+        SongController.initializeSongDict()
         return true
     }
 
