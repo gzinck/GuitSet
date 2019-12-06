@@ -28,6 +28,7 @@
 		B7A6B5C42399BF2B001D816E /* SongTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7A6B5C22399BF2B001D816E /* SongTableViewCell.xib */; };
 		B7A6B5C62399C175001D816E /* AllSongsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A6B5C52399C175001D816E /* AllSongsListTableViewController.swift */; };
 		B7D53B56239ABD790036784F /* SongControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D53B55239ABD790036784F /* SongControllerDelegate.swift */; };
+		B7D53B58239AC76C0036784F /* AllSongsSelectorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D53B57239AC76C0036784F /* AllSongsSelectorTableViewController.swift */; };
 		B7D74A2723943D43008DCF02 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D74A2623943D43008DCF02 /* TextField.swift */; };
 		B7D74A35239446C2008DCF02 /* CreateSongTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D74A34239446C2008DCF02 /* CreateSongTableViewController.swift */; };
 		B7D74A3923946653008DCF02 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D74A3823946653008DCF02 /* UIViewController.swift */; };
@@ -87,6 +88,7 @@
 		B7A6B5C22399BF2B001D816E /* SongTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SongTableViewCell.xib; sourceTree = "<group>"; };
 		B7A6B5C52399C175001D816E /* AllSongsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllSongsListTableViewController.swift; sourceTree = "<group>"; };
 		B7D53B55239ABD790036784F /* SongControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongControllerDelegate.swift; sourceTree = "<group>"; };
+		B7D53B57239AC76C0036784F /* AllSongsSelectorTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllSongsSelectorTableViewController.swift; sourceTree = "<group>"; };
 		B7D74A2623943D43008DCF02 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		B7D74A34239446C2008DCF02 /* CreateSongTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSongTableViewController.swift; sourceTree = "<group>"; };
 		B7D74A3823946653008DCF02 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 			isa = PBXGroup;
 			children = (
 				B7A6B5C52399C175001D816E /* AllSongsListTableViewController.swift */,
+				B7D53B57239AC76C0036784F /* AllSongsSelectorTableViewController.swift */,
 			);
 			path = SongList;
 			sourceTree = "<group>";
@@ -548,6 +551,7 @@
 				B7D74A35239446C2008DCF02 /* CreateSongTableViewController.swift in Sources */,
 				B7A6B5C62399C175001D816E /* AllSongsListTableViewController.swift in Sources */,
 				B7A6B5BD23997121001D816E /* InterceptableNavigationController.swift in Sources */,
+				B7D53B58239AC76C0036784F /* AllSongsSelectorTableViewController.swift in Sources */,
 				B78574CC231D8FC9009C4934 /* PerformanceSet.swift in Sources */,
 				B78574D0231DA093009C4934 /* AddPerformanceSetTableViewController.swift in Sources */,
 				B7857498231D8C71009C4934 /* AppDelegate.swift in Sources */,

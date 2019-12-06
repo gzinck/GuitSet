@@ -1,69 +1,59 @@
 //
-//  AllSongsListTableViewController.swift
+//  AllSongsSelectorTableViewController.swift
 //  GuitSet
 //
-//  Created by Graeme Zinck on 2019-12-05.
+//  Created by Graeme Zinck on 2019-12-06.
 //  Copyright © 2019 Graeme Zinck. All rights reserved.
 //
 
 import UIKit
 
-class AllSongsListTableViewController: UITableViewController, SongControllerDelegate {
+class AllSongsSelectorTableViewController: UITableViewController {
     
-    /// Array with all songs to display
     var songs: [Song] = SongController.songList
+    var selectedIDs: Set<Int> = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         songs = SongController.songList
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        SongController.addDelegate(self)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        SongController.removeDelegate(self)
-    }
-    
-    func songsWereUpdated() {
-        self.songs = SongController.songList
-        tableView.reloadData()
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
         return songs.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let genericCell = tableView.dequeueReusableCell(withIdentifier: "SongCell", for: indexPath)
-        
         guard let cell = genericCell as? SongTableViewCell else { return genericCell }
         guard indexPath.row < songs.count else { return genericCell }
         cell.setSong(songs[indexPath.row])
-
+        if(selectedIDs.contains(songs[indexPath.row].id)) {
+            cell.accessoryType = .checkmark
+        } else {
+            cell.accessoryType = .none
+        }
+        
         return cell
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let id = songs[indexPath.row].id
+        if(selectedIDs.contains(id)) {
+            selectedIDs.remove(id)
+        } else {
+            selectedIDs.insert(id)
+        }
+        tableView.reloadData()
     }
-    */
 
     /*
     // Override to support editing the table view.
@@ -74,21 +64,6 @@ class AllSongsListTableViewController: UITableViewController, SongControllerDele
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
     }
     */
 

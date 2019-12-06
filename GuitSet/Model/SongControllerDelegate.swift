@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol SongControllerDelegate {
+protocol SongControllerDelegate: class {
     func songsWereUpdated()
 }

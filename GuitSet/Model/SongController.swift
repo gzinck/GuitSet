@@ -53,6 +53,17 @@ class SongController {
     }
     
     /**
+     Removes a delegate.
+     
+     - parameter delegate: The delegate to remove
+     */
+    static func removeDelegate(_ delegate: SongControllerDelegate) {
+        delegates.removeAll { (aDelegate) -> Bool in
+            return aDelegate === delegate
+        }
+    }
+    
+    /**
      Initializes the song dictionary in memory by loading from file, if applicable, or just getting placeholders.
      This function should be called before using the song dictionary.
      */

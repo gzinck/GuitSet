@@ -334,16 +334,16 @@
             </objects>
             <point key="canvasLocation" x="1917" y="-567"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Songs-->
         <scene sceneID="1CE-hY-DE7">
             <objects>
-                <tableViewController id="504-ns-iY6" sceneMemberID="viewController">
+                <tableViewController id="504-ns-iY6" customClass="AllSongsSelectorTableViewController" customModule="GuitSet" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="8Qp-aD-zbf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SongCell" id="HYv-5i-WhO">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SongCell" id="HYv-5i-WhO" customClass="SongTableViewCell" customModule="GuitSet" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HYv-5i-WhO" id="YrA-b2-SNP">
@@ -357,7 +357,7 @@
                             <outlet property="delegate" destination="504-ns-iY6" id="0Sc-gK-eqA"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="mp1-Z8-6AG"/>
+                    <navigationItem key="navigationItem" title="Songs" id="mp1-Z8-6AG"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pnx-K5-zSM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
