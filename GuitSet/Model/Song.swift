@@ -10,7 +10,7 @@ import Foundation
 
 /// The metadata for a song. Note that songs should *never* be instantiated directly;
 /// they should only be instantiated by the SongController.
-struct Song: Codable {
+class Song: Codable {
     /// The directory for document storage.
     static var documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     /// The specific directory for storing the songs.
@@ -28,6 +28,13 @@ struct Song: Codable {
     var draft: Bool
     /// The ID for the song
     var id: Int
+    /// Whether the song is empty or not
+    var isEmpty: Bool {
+        if(title == "" && artist == "" && capo == 0 && chords == "" && draft == true) {
+            return true
+        }
+        return false
+    }
     
     /**
      Creates a new, empty song. This should only ever be called by the SongController, which assigns

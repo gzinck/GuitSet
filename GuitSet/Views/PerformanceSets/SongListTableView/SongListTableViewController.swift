@@ -14,19 +14,18 @@ import UIKit
  */
 class SongListTableViewController: UITableViewController {
     
-    /// The index of the performance set full of songs we want to use.
-    var setIndex: Int? {
+    /// The performance set with all songs we want to perform
+    var performanceSet: PerformanceSet? {
         didSet {
-            guard let index = setIndex else { return }
-            self.title = PerformanceSetController.getPerformanceSet(index: index)?.name
+            guard let performanceSet = performanceSet else { return }
+            self.title = performanceSet.name
         }
     }
     
     /// The songs in the performance set
     var songs: [Song] {
-        guard let index = setIndex,
-            let set = PerformanceSetController.getPerformanceSet(index: index) else { return [] }
-        return SongController.getSongs(set.songIDs)
+        guard let performanceSet = performanceSet else { return [] }
+        return SongController.getSongs(performanceSet.songIDs)
     }
 
     override func viewDidLoad() {
@@ -56,7 +55,7 @@ class SongListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         // If no index for the set, then we have a problem.
-        guard let setIndex = setIndex else {
+        guard let performanceSet = performanceSet else {
             return tableView.dequeueReusableCell(withIdentifier: "PerformanceInfo", for: indexPath)
         }
         
@@ -67,11 +66,11 @@ class SongListTableViewController: UITableViewController {
             case 0:
                 // Location cell
                 cell.detailTextLabel?.text = "Location"
-                cell.textLabel?.text = PerformanceSetController.performanceSets[setIndex].performanceLocation
+                cell.textLabel?.text = performanceSet.performanceLocation
             case 1:
                 // Date cell
                 cell.detailTextLabel?.text = "Date"
-                if let performanceSetDate = PerformanceSetController.performanceSets[setIndex].performanceDate {
+                if let performanceSetDate = performanceSet.performanceDate {
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateStyle = .medium
                     cell.textLabel?.text = dateFormatter.string(from: performanceSetDate)
@@ -81,7 +80,7 @@ class SongListTableViewController: UITableViewController {
             case 2:
                 // Instrument cell
                 var instruments = ""
-                for instrument in PerformanceSetController.performanceSets[setIndex].instruments ?? [] {
+                for instrument in performanceSet.instruments ?? [] {
                     instruments += ", " + instrument.rawValue
                 }
                 if instruments.count > 2 {
@@ -124,15 +123,14 @@ class SongListTableViewController: UITableViewController {
     
     // MARK: - Navigation
 
-    // When a performance set is to be edited, go to a different view controller
+    // When THIS performance set is to be edited, go to a different view controller
     // and pass the set to edit
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "EditPerformanceSet" {
             guard let navigationController = segue.destination as? UINavigationController else { return }
             guard let addPerformanceSetTableViewController = navigationController.viewControllers.first as? AddPerformanceSetTableViewController else { return }
-            guard let index = setIndex else { return }
-            let performanceSet = PerformanceSetController.performanceSets[index]
-            addPerformanceSetTableViewController.performanceSet = performanceSet
+            guard let performanceSet = performanceSet else { return }
+            addPerformanceSetTableViewController.performanceSet = performanceSet.copy() as? PerformanceSet
         }
         // Deselect what was selected, if anything
         if let indexPath = tableView.indexPathForSelectedRow {
@@ -145,15 +143,15 @@ class SongListTableViewController: UITableViewController {
     @IBAction func unwindAddPerformanceSet(for unwindSegue: UIStoryboardSegue) {
         if unwindSegue.identifier == "AddPerformanceSet" {
             guard let addPerformanceSetTableViewController = unwindSegue.source as? AddPerformanceSetTableViewController,
-                let performanceSet = addPerformanceSetTableViewController.performanceSet,
-                let setIndex = setIndex
+                let newSet = addPerformanceSetTableViewController.performanceSet,
+                let oldSet = performanceSet
                 else { return }
             
-            PerformanceSetController.performanceSets[setIndex] = performanceSet
-            
+            PerformanceSetController.replace(oldSet, with: newSet)
+            performanceSet = newSet
             // Reload data
             tableView.reloadData()
-            self.title = PerformanceSetController.performanceSets[setIndex].name
+            self.title = newSet.name
         }
     }
 

@@ -9,7 +9,7 @@
 import Foundation
 
 /// The structure for a performance set (including set liists, etc).
-struct PerformanceSet: Codable {
+class PerformanceSet: Codable, NSCopying {
     /// The directory for documents to be stored in the FileManager.
     static var documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     /// The specific directory for storing the performance sets.
@@ -46,13 +46,13 @@ struct PerformanceSet: Codable {
         - instruments: The instruments used in the set.
         - image: An image representing the performance.
      */
-    init(name: String?, at performanceLocation: String?, on performanceDate: Date?, with instruments: [Instrument]?, image: Data?) {
+    init(name: String?, at performanceLocation: String?, on performanceDate: Date?, with instruments: [Instrument]?, image: Data?, songIDs: [Int] = []) {
         self.name = name
         self.performanceLocation = performanceLocation
         self.performanceDate = performanceDate
         self.instruments = instruments
         self.image = image
-        self.songIDs = []
+        self.songIDs = songIDs
     }
     
     /**
@@ -76,6 +76,12 @@ struct PerformanceSet: Codable {
             return decodedPerformanceSets
         }
         return nil
+    }
+    
+    func copy(with zone: NSZone? = nil) -> Any {
+        let newInstruments = instruments
+        let newSongIDs = songIDs
+        return PerformanceSet(name: name, at: performanceLocation, on: performanceDate, with: newInstruments, image: image, songIDs: newSongIDs)
     }
 }
 

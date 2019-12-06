@@ -21,8 +21,8 @@ class SongTableViewCell: NibTableViewCell {
     
     func setSong(_ song: Song) {
         self.song = song
-        titleLabel.text = song.title
-        artistLabel.text = song.artist
+        titleLabel.text = song.title != "" ? song.title : "No Title"
+        artistLabel.text = song.artist != "" ? song.artist : "No Artist"
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

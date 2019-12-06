@@ -517,6 +517,9 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words" enablesReturnKeyAutomatically="YES"/>
+                                                    <connections>
+                                                        <action selector="valueChanged:" destination="0Fa-bo-vSH" eventType="editingDidEnd" id="wgQ-bY-ruB"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -538,6 +541,9 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words" enablesReturnKeyAutomatically="YES"/>
+                                                    <connections>
+                                                        <action selector="valueChanged:" destination="0Fa-bo-vSH" eventType="editingDidEnd" id="yZ5-RG-TU7"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>

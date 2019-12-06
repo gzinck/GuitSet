@@ -18,10 +18,15 @@ class PerformanceSetController {
     private init() {}
     
     /// The performance sets for the application.
-    static var performanceSets: [PerformanceSet] = [] {
+    private static var performanceSets: [PerformanceSet] = [] {
         didSet {
             PerformanceSet.saveToFile(performanceSets)
         }
+    }
+    
+    /// The number of performance sets
+    static var numPerformanceSets: Int {
+        return performanceSets.count
     }
     
     /**
@@ -37,6 +42,72 @@ class PerformanceSetController {
         return nil
     }
     
+    /**
+     Gets a copy of a performance set, given its index.
+     
+     - parameter index: The index of the performance set to get.
+     - returns: The corresponding performance set copy, or nil if it does not exist.
+     */
+    static func getPerformanceSetCopy(index: Int) -> PerformanceSet? {
+        if(index < performanceSets.count) {
+            return performanceSets[index].copy() as? PerformanceSet
+        }
+        return nil
+    }
+    
+    /**
+     Gets the index of a given set in the performance set list.
+     
+     - parameter set: The set to find.
+     - returns: The index of the performance set.
+     */
+    static func indexOf(_ set: PerformanceSet) -> Int? {
+        return performanceSets.firstIndex { (currSet) -> Bool in
+            return currSet === set // Gets the set that is identical
+        }
+    }
+    
+    /**
+     Replaces a set with a newer version.
+     
+     - parameters:
+        - originalSet: The original version of the set which needs to be replaced.
+        - newSet: The new version of the set.
+     */
+    static func replace(_ originalSet: PerformanceSet, with newSet: PerformanceSet) {
+        guard let index = indexOf(originalSet) else { return }
+        replacePerformanceSet(index: index, set: newSet)
+    }
+    
+    /**
+     Removes the performance set at the given index.
+     
+     - parameter index: The index of the performance set to remove.
+     */
+    static func removePerformanceSet(index: Int) {
+        performanceSets.remove(at: index)
+    }
+    
+    /**
+     Adds a performance set to the controller.
+     
+     - parameter set: The performance set to add.
+     */
+    static func addPerformanceSet(_ set: PerformanceSet) {
+        performanceSets.append(set)
+    }
+    
+    /**
+     Replaces a performance set at the index desired.
+     
+     - parameters:
+        - index: The index of the performance set to replace.
+        - set: The performance set which is to be used.
+     */
+    static func replacePerformanceSet(index: Int, set: PerformanceSet) {
+        performanceSets[index] = set
+    }
+    
     /// Initializes the performance sets by loading from file.
     static func initializePerformanceSets() {
         guard performanceSets.count == 0 else { return }
@@ -49,7 +120,7 @@ class PerformanceSetController {
     
     /// Sets up dummy performance sets in the application.
     static func getPlaceholderPerformanceSets() -> [PerformanceSet] {
-        var sets = [
+        let sets = [
             PerformanceSet(name: "My First Set", at: "The Bathroom", on: Date(), with: [.piano], image: nil),
             PerformanceSet(name: "My Second Set", at: "The Laundry Room", on: Date(), with: [.piano], image: nil),
             PerformanceSet(name: "My Third Set", at: "Mars", on: Date(), with: [.piano], image: nil)

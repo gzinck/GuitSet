@@ -15,11 +15,15 @@ class SongController {
     /// The initialization of a SongController is not allowed
     private init() {}
     
+    /// Any class that needs to be notified of song changes should be a delegate
+    private static var delegates: [SongControllerDelegate] = []
+    
     /// The song dictionary for the application, taking IDs and giving the Song objects.
     private static var songDict: [Int:Song] = [:] {
         didSet {
             // Save it
             Song.saveToFile(songDict)
+            songsUpdated()
         }
     }
     /// The highest ID of a song in the dictionary.
@@ -32,10 +36,20 @@ class SongController {
         }
     }
     
+    /// The number of songs.
     static var numSongs: Int {
         get {
             return songDict.count
         }
+    }
+    
+    /**
+     Adds a delegate which will be told whenever the song dictionary changes.
+     
+     - parameter delegate: A listener for the song controller.
+     */
+    static func addDelegate(_ delegate: SongControllerDelegate) {
+        delegates.append(delegate)
     }
     
     /**
@@ -94,6 +108,15 @@ class SongController {
     }
     
     /**
+     Notifies delegates that the songs have been updated.
+     */
+    static func songsUpdated() {
+        for delegate in delegates {
+            delegate.songsWereUpdated()
+        }
+    }
+    
+    /**
      Removes a song using its ID.
      
      - parameter id: The ID of the song to remove.
@@ -104,6 +127,16 @@ class SongController {
             return true
         }
         return false
+    }
+    
+    /**
+     Removes a given song from the song controller.
+     
+     - parameter song: The song to remove.
+     - returns: Whether the song was successfully removed or not.
+     */
+    static func removeSong(_ song: Song) -> Bool {
+        return removeSong(song.id)
     }
 
     /**

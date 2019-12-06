@@ -31,6 +31,8 @@ class CreateSongTableViewController: UITableViewController, UITextViewDelegate {
     var shouldCreateSong = true
     /// Boolean representing whether the chords section is being selected/worked on.
     var chordsSelected = false
+    /// The song being created
+    var song: Song?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +55,17 @@ class CreateSongTableViewController: UITableViewController, UITextViewDelegate {
         
         // Get notified when the chords text area changes
         songChords.delegate = self
+        
+        // Create the song
+        song = SongController.createSong()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        // Remove the song if it's actually just blank...
+        guard let song = song else { return }
+        if(song.isEmpty) {
+            SongController.removeSong(song)
+        }
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -110,7 +123,7 @@ class CreateSongTableViewController: UITableViewController, UITextViewDelegate {
         
         // Make the done button say "Create" (since no longer need a button for closing keyboard)
         doneButton.title = "Create"
-        shouldCreateSong = false
+        shouldCreateSong = true
         tableView.beginUpdates()
         tableView.endUpdates()
     }
@@ -120,12 +133,34 @@ class CreateSongTableViewController: UITableViewController, UITextViewDelegate {
         self.tableView.beginUpdates()
         self.tableView.endUpdates()
         textView.scrollRangeToVisible(textView.selectedRange)
+        song?.chords = songChords.text
+    }
+    
+    /// Refreshes the song with the current information {
+    func refreshSong() {
+        if let title = songTitleTextField.text {
+            song?.title = title
+        }
+        if let artist = songArtistTextField.text {
+            song?.artist = artist
+        }
+        if let capoText = capoLabel.text, let capo = Int(capoText) {
+            song?.capo = capo
+        }
+        song?.chords = songChords.text
+    }
+    
+    /// Refreshes the view when a text field changes
+    @IBAction func valueChanged(_ sender: Any) {
+        refreshSong()
     }
     
     /// Creates the song if the keyboard is not engaged. Otherwise, it just closes the keyboard.
     @IBAction func doneButtonPressed(_ sender: Any) {
         if(shouldCreateSong) {
-            // TODO: Actually create the song and add it!
+            song?.draft = false
+            SongController.songsUpdated()
+            dismiss(animated: true, completion: nil)
         } else {
             songChords.resignFirstResponder()
             songTitleTextField.resignFirstResponder()
