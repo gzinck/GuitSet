@@ -30,6 +30,10 @@ class SongListTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Allow editing of the sets.
+        self.navigationItem.rightBarButtonItem = self.editButtonItem
+        tableView.allowsSelectionDuringEditing = true
     }
     
     // MARK: - Table view data source
@@ -46,7 +50,7 @@ class SongListTableViewController: UITableViewController {
         case 0:
             return 3
         case 1:
-            return songs.count
+            return songs.count + 1 // Extra one for the add button
         default:
             return 0
         }
@@ -93,12 +97,15 @@ class SongListTableViewController: UITableViewController {
             }
             return cell
         } else {
-            // For displaying a song in the list
-            let genericCell = tableView.dequeueReusableCell(withIdentifier: "SongCell", for: indexPath)
-            guard let cell = genericCell as? SongTableViewCell else { return genericCell }
-            guard indexPath.row < songs.count else { return genericCell }
-            cell.setSong(songs[indexPath.row])
-            return cell
+            if(indexPath.row < songs.count) {
+                // For displaying a song in the list
+                let genericCell = tableView.dequeueReusableCell(withIdentifier: "SongCell", for: indexPath)
+                guard let cell = genericCell as? SongTableViewCell else { return genericCell }
+                cell.setSong(songs[indexPath.row])
+                return cell
+            } else {
+                return tableView.dequeueReusableCell(withIdentifier: "AddSongsCell", for: indexPath)
+            }
         }
     }
     
@@ -117,7 +124,42 @@ class SongListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Set information section
         if(indexPath.section == 0) {
-            
+            // Edit it... this is done on the Storyboard (for now)
+        } else if(indexPath.row < songs.count) {
+            // Open the song
+        } else {
+            // Segue to add songs
+            performSegue(withIdentifier: "SelectSongs", sender: nil)
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        if(indexPath.section == 1) { return true }
+        return false
+    }
+    
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        if(indexPath.section == 1) { return .delete }
+        else { return .none }
+    }
+    
+    override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        if(indexPath.section == 1) { return true }
+        return false
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if(indexPath.section == 1 && indexPath.row < songs.count && editingStyle == .delete) {
+            performanceSet?.songIDs.remove(at: indexPath.row)
+        }
+        tableView.reloadData()
+    }
+    
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        if(sourceIndexPath.section == 1 && destinationIndexPath.section == 1) {
+            guard let performanceSet = performanceSet else { return }
+            let id = performanceSet.songIDs.remove(at: sourceIndexPath.row)
+            performanceSet.songIDs.insert(id, at: destinationIndexPath.row)
         }
     }
     

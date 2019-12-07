@@ -10,12 +10,12 @@ import UIKit
 
 class AllSongsSelectorTableViewController: UITableViewController {
     
-    var songs: [Song] = SongController.songList
+    var songs: [Song] = SongController.finishedSongList
     var selectedIDs: Set<Int> = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        songs = SongController.songList
+        songs = SongController.finishedSongList
     }
 
     // MARK: - Table view data source

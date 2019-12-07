@@ -32,7 +32,43 @@ class SongController {
     /// The song list for the application. This is read-only.
     static var songList: [Song] {
         get {
-            return Array(songDict.values)
+            return Array(songDict.values).sorted { (s1, s2) -> Bool in
+                if(s1.title < s2.title) { return true }
+                if(s1.title > s2.title) { return false }
+                if(s1.artist < s2.artist) { return true }
+                if(s1.artist > s2.artist) { return false }
+                if(!s1.draft && s2.draft) { return true }
+                if(s1.draft && !s2.draft) { return false }
+                return s1.id < s2.id
+            }
+        }
+    }
+    
+    /// The song list with only songs which have been completed.
+    static var finishedSongList: [Song] {
+        get {
+            let songs = songDict.values.filter({!$0.draft})
+            return songs.sorted { (s1, s2) -> Bool in
+                if(s1.title < s2.title) { return true }
+                if(s1.title > s2.title) { return false }
+                if(s1.artist < s2.artist) { return true }
+                if(s1.artist > s2.artist) { return false }
+                return s1.id < s2.id
+            }
+        }
+    }
+    
+    /// The song list with only songs which have not been completed.
+    static var draftSongList: [Song] {
+        get {
+            let songs = songDict.values.filter({$0.draft})
+            return songs.sorted { (s1, s2) -> Bool in
+                if(s1.title < s2.title) { return true }
+                if(s1.title > s2.title) { return false }
+                if(s1.artist < s2.artist) { return true }
+                if(s1.artist > s2.artist) { return false }
+                return s1.id < s2.id
+            }
         }
     }
     

@@ -66,6 +66,7 @@ class CreateSongTableViewController: UITableViewController, UITextViewDelegate {
         if(song.isEmpty) {
             SongController.removeSong(song)
         }
+        SongController.songsUpdated()
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
