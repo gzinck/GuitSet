@@ -12,7 +12,7 @@ import UIKit
  View controller that displays all songs for a given performance set, indicated by the set's index stored in the
  DataController.
  */
-class SongListTableViewController: UITableViewController {
+class SongListTableViewController: UITableViewController, SongControllerDelegate {
     
     /// The performance set with all songs we want to perform
     var performanceSet: PerformanceSet? {
@@ -34,6 +34,19 @@ class SongListTableViewController: UITableViewController {
         // Allow editing of the sets.
         self.navigationItem.rightBarButtonItem = self.editButtonItem
         tableView.allowsSelectionDuringEditing = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        SongController.addDelegate(self)
+        tableView.reloadData()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        SongController.removeDelegate(self)
+    }
+    
+    func songsWereUpdated() {
+        tableView.reloadData()
     }
     
     // MARK: - Table view data source
@@ -134,12 +147,14 @@ class SongListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        if(indexPath.section == 1) { return true }
+        guard let performanceSet = performanceSet else { return false }
+        if(indexPath.section == 1 && indexPath.row < performanceSet.songIDs.count) { return true }
         return false
     }
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        if(indexPath.section == 1) { return .delete }
+        guard let performanceSet = performanceSet else { return .none }
+        if(indexPath.section == 1 && indexPath.row < performanceSet.songIDs.count) { return .delete }
         else { return .none }
     }
     
@@ -158,8 +173,14 @@ class SongListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         if(sourceIndexPath.section == 1 && destinationIndexPath.section == 1) {
             guard let performanceSet = performanceSet else { return }
-            let id = performanceSet.songIDs.remove(at: sourceIndexPath.row)
-            performanceSet.songIDs.insert(id, at: destinationIndexPath.row)
+            if destinationIndexPath.row >= performanceSet.songIDs.count {
+                let id = performanceSet.songIDs.remove(at: sourceIndexPath.row)
+                performanceSet.songIDs.append(id)
+                tableView.reloadData()
+            } else {
+                let id = performanceSet.songIDs.remove(at: sourceIndexPath.row)
+                performanceSet.songIDs.insert(id, at: destinationIndexPath.row)
+            }
         }
     }
     
@@ -168,16 +189,25 @@ class SongListTableViewController: UITableViewController {
     // When THIS performance set is to be edited, go to a different view controller
     // and pass the set to edit
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // If we're editing the set...
         if segue.identifier == "EditPerformanceSet" {
             guard let navigationController = segue.destination as? UINavigationController else { return }
             guard let addPerformanceSetTableViewController = navigationController.viewControllers.first as? AddPerformanceSetTableViewController else { return }
             guard let performanceSet = performanceSet else { return }
             addPerformanceSetTableViewController.performanceSet = performanceSet.copy() as? PerformanceSet
-        } else if segue.identifier == "SelectSongs" {
+        }
+        // If we're selecting songs for the set...
+        else if segue.identifier == "SelectSongs" {
             guard let navigationController = segue.destination as? UINavigationController else { return }
             guard let selectSongsController = navigationController.viewControllers.first as? AllSongsSelectorTableViewController else { return }
             guard let performanceSet = performanceSet else { return }
             selectSongsController.selectedIDs = Set(performanceSet.songIDs)
+        }
+        // If we're looking at the song...
+        else if segue.identifier == "ShowSong" {
+            guard let songView = segue.destination as? SongTableViewController, let indexPath = tableView.indexPathForSelectedRow else { return }
+            guard let performanceSet = performanceSet else { return }
+            songView.songId = performanceSet.songIDs[indexPath.row]
         }
         // Deselect what was selected, if anything
         if let indexPath = tableView.indexPathForSelectedRow {

@@ -22,7 +22,6 @@ class SongController {
     private static var songDict: [Int:Song] = [:] {
         didSet {
             // Save it
-            Song.saveToFile(songDict)
             songsUpdated()
         }
     }
@@ -161,6 +160,7 @@ class SongController {
         for delegate in delegates {
             delegate.songsWereUpdated()
         }
+        Song.saveToFile(songDict)
     }
     
     /**
@@ -169,6 +169,7 @@ class SongController {
      - parameter id: The ID of the song to remove.
      - returns: Whether the song was successfully removed or not.
      */
+    @discardableResult
     static func removeSong(_ id: Int) -> Bool {
         if(songDict.removeValue(forKey: id) != nil) {
             return true
@@ -182,6 +183,7 @@ class SongController {
      - parameter song: The song to remove.
      - returns: Whether the song was successfully removed or not.
      */
+    @discardableResult
     static func removeSong(_ song: Song) -> Bool {
         return removeSong(song.id)
     }

@@ -8,9 +8,14 @@
 
 import UIKit
 
+/**
+ View controller for selecting which songs are a part of a performance set.
+ It results in a set of selected song IDs.
+ */
 class AllSongsSelectorTableViewController: UITableViewController {
-    
+    /// The songs which we are able to select
     var songs: [Song] = SongController.finishedSongList
+    /// The IDs of all the songs selected
     var selectedIDs: Set<Int> = []
 
     override func viewDidLoad() {
@@ -54,27 +59,4 @@ class AllSongsSelectorTableViewController: UITableViewController {
         }
         tableView.reloadData()
     }
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

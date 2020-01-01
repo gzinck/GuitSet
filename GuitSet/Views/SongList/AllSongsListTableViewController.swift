@@ -8,6 +8,10 @@
 
 import UIKit
 
+/**
+ View controller that lists all the songs. This is one of the main views of the application, allowing
+ viewing and deleting songs.
+ */
 class AllSongsListTableViewController: UITableViewController, SongControllerDelegate {
     
     /// Array with all finished songs to display.
@@ -16,22 +20,23 @@ class AllSongsListTableViewController: UITableViewController, SongControllerDele
     /// Array with all unfinished songs to display.
     var draftSongs: [Song] = SongController.draftSongList
 
+    /// ID for the song being editd, if any
+    var editedSongId: Int?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.rightBarButtonItem = self.editButtonItem
         finishedSongs = SongController.finishedSongList
         draftSongs = SongController.draftSongList
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
+    /// It should listen to the SongController for when there are changes.
     override func viewWillAppear(_ animated: Bool) {
+        songsWereUpdated()
         SongController.addDelegate(self)
     }
     
+    /// It stops listening to changes in the song list when it disappears.
     override func viewDidDisappear(_ animated: Bool) {
         SongController.removeDelegate(self)
     }
@@ -83,50 +88,37 @@ class AllSongsListTableViewController: UITableViewController, SongControllerDele
 
         return cell
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            let songId = (indexPath.section == 0) ? finishedSongs[indexPath.row].id : draftSongs[indexPath.row].id
             // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+            SongController.removeSong(songId)
+        }
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            if(indexPath.row < finishedSongs.count) {
+                editedSongId = finishedSongs[indexPath.row].id
+            }
+        } else if indexPath.section == 1 {
+            if(indexPath.row < draftSongs.count) {
+                editedSongId = draftSongs[indexPath.row].id
+            }
+        }
+        performSegue(withIdentifier: "ShowSong", sender: self)
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        // When showing an individual song, set the songId
+        if(segue.identifier == "ShowSong") {
+            guard let songView = segue.destination as? SongTableViewController, let editedSongId = editedSongId else { return }
+            songView.songId = editedSongId
+        }
     }
-    */
 
 }

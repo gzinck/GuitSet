@@ -42,7 +42,7 @@ class CreateSongTableViewController: UITableViewController, UITextViewDelegate {
         keyboardHeight = self.tabbarHeight
         
         // The button should read "Create", except when we want it to dismiss the keyboard
-        doneButton.title = "Create"
+        doneButton.title = "Save"
         
         // Get when the keyboard is about to show/hide
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -57,7 +57,17 @@ class CreateSongTableViewController: UITableViewController, UITextViewDelegate {
         songChords.delegate = self
         
         // Create the song
-        song = SongController.createSong()
+        if let song = song {
+            self.title = "Edit Song"
+            songChords.text = song.chords
+            songTitleTextField.text = song.title
+            songArtistTextField.text = song.artist
+            capoLabel.text = "\(song.capo)"
+            capoStepper.value = Double(song.capo)
+        } else {
+            self.title = "Create Song"
+            song = SongController.createSong()
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -122,8 +132,8 @@ class CreateSongTableViewController: UITableViewController, UITextViewDelegate {
         keyboardHeight = self.tabbarHeight
         chordsSelected = false
         
-        // Make the done button say "Create" (since no longer need a button for closing keyboard)
-        doneButton.title = "Create"
+        // Make the done button say "Save" (since no longer need a button for closing keyboard)
+        doneButton.title = "Save"
         shouldCreateSong = true
         tableView.beginUpdates()
         tableView.endUpdates()
@@ -170,5 +180,9 @@ class CreateSongTableViewController: UITableViewController, UITextViewDelegate {
             tableView.beginUpdates()
             tableView.endUpdates()
         }
+    }
+    @IBAction func stepperChanged(_ sender: UIStepper) {
+        capoLabel.text = "\(Int(sender.value))"
+        refreshSong()
     }
 }

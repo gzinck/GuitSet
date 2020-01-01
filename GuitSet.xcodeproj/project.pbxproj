@@ -27,6 +27,7 @@
 		B7A6B5C32399BF2B001D816E /* SongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A6B5C12399BF2B001D816E /* SongTableViewCell.swift */; };
 		B7A6B5C42399BF2B001D816E /* SongTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7A6B5C22399BF2B001D816E /* SongTableViewCell.xib */; };
 		B7A6B5C62399C175001D816E /* AllSongsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A6B5C52399C175001D816E /* AllSongsListTableViewController.swift */; };
+		B7AD116523BCEF3200E43A4F /* SongTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7AD116423BCEF3200E43A4F /* SongTableViewController.swift */; };
 		B7D53B56239ABD790036784F /* SongControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D53B55239ABD790036784F /* SongControllerDelegate.swift */; };
 		B7D53B58239AC76C0036784F /* AllSongsSelectorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D53B57239AC76C0036784F /* AllSongsSelectorTableViewController.swift */; };
 		B7D74A2723943D43008DCF02 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D74A2623943D43008DCF02 /* TextField.swift */; };
@@ -87,6 +88,7 @@
 		B7A6B5C12399BF2B001D816E /* SongTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongTableViewCell.swift; sourceTree = "<group>"; };
 		B7A6B5C22399BF2B001D816E /* SongTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SongTableViewCell.xib; sourceTree = "<group>"; };
 		B7A6B5C52399C175001D816E /* AllSongsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllSongsListTableViewController.swift; sourceTree = "<group>"; };
+		B7AD116423BCEF3200E43A4F /* SongTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongTableViewController.swift; sourceTree = "<group>"; };
 		B7D53B55239ABD790036784F /* SongControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongControllerDelegate.swift; sourceTree = "<group>"; };
 		B7D53B57239AC76C0036784F /* AllSongsSelectorTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllSongsSelectorTableViewController.swift; sourceTree = "<group>"; };
 		B7D74A2623943D43008DCF02 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 		B7A6B5B823996E5B001D816E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B7AD116323BCEF0300E43A4F /* SongView */,
 				B7A6B5BE23997BBF001D816E /* SongList */,
 				B7A6B5BB239970C3001D816E /* TabBar */,
 				B7D74A29239441FF008DCF02 /* CreateSong */,
@@ -256,6 +259,14 @@
 				B7D53B57239AC76C0036784F /* AllSongsSelectorTableViewController.swift */,
 			);
 			path = SongList;
+			sourceTree = "<group>";
+		};
+		B7AD116323BCEF0300E43A4F /* SongView */ = {
+			isa = PBXGroup;
+			children = (
+				B7AD116423BCEF3200E43A4F /* SongTableViewController.swift */,
+			);
+			path = SongView;
 			sourceTree = "<group>";
 		};
 		B7D74A2523943D15008DCF02 /* Components */ = {
@@ -557,6 +568,7 @@
 				B7857498231D8C71009C4934 /* AppDelegate.swift in Sources */,
 				B78574D2231EA452009C4934 /* InstrumentTableViewController.swift in Sources */,
 				B78574C6231D8D05009C4934 /* PerformanceSetTableViewController.swift in Sources */,
+				B7AD116523BCEF3200E43A4F /* SongTableViewController.swift in Sources */,
 				B71DD5412391A22900D80D7D /* InstrumentSelectorDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
